@@ -43,7 +43,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .then(res => {
           if (res.data?.success && res.data?.data) {
             setUser(res.data.data);
-            console.log("user", user);
           } else {
             setUser(null);
           }
