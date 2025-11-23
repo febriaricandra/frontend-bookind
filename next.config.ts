@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   images: {
-    domains: ["localhost", "127.0.0.1", "your-image-domain.com"], // tambahkan domain backend/image storage
+    domains: ["localhost", "127.0.0.1", "bookind.cguritno.my.id"], // tambahkan domain backend/image storage
   },
 };
 

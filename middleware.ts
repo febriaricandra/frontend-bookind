@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   const publicPaths = [
+    '/',
     '/login',
     '/register',
     '/api/auth/login',
@@ -18,7 +19,7 @@ export async function middleware(request: NextRequest) {
   // Cek JWT di cookie (atau bisa juga di header)
   const token = request.cookies.get('jwt')?.value || request.headers.get('authorization')?.split(' ')[1]
   if (!token) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
   // Tidak perlu verifikasi di sini, cukup diteruskan ke backend
