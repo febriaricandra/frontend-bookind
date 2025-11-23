@@ -218,7 +218,7 @@ export function BookKindApp() {
                   <div className="text-lg font-semibold text-yellow-800">Membership Anda belum aktif</div>
                   <div className="text-sm text-yellow-700">Untuk berjualan, Anda wajib memiliki membership aktif. Hubungi admin untuk request membership dan dapatkan fitur eksklusif.</div>
                   <a
-                    href={`https://wa.me/6281234567890?text=Halo%20admin,%20saya%20ingin%20request%20membership%20untuk%20akun%20${user?.email}`}
+                    href={`https://wa.me/6281296859294?text=Halo%20admin,%20saya%20ingin%20request%20membership%20untuk%20akun%20${user?.email}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -248,7 +248,7 @@ export function BookKindApp() {
                   <div className="text-lg font-semibold text-yellow-800">Membership Anda belum aktif</div>
                   <div className="text-sm text-yellow-700">Hubungi admin untuk request membership dan dapatkan fitur eksklusif.</div>
                   <a
-                    href={`https://wa.me/6281234567890?text=Halo%20admin,%20saya%20ingin%20request%20membership%20untuk%20akun%20${user?.email}`}
+                    href={`https://wa.me/6281296859294?text=Halo%20admin,%20saya%20ingin%20request%20membership%20untuk%20akun%20${user?.email}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
