@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+
+const url = process.env.NEXT_PUBLIC_FILE_URL || "http://localhost:3000";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -16,5 +18,5 @@ export function currency(n: number): string {
 export function getImageUrl(img: string) {
   if (!img) return "";
   if (/^https?:\/\//.test(img)) return img;
-  return `http://localhost:3001/${img.replace(/^\/+/, "")}`;
+  return `${url}/${img.replace(/^\/+/, "")}`;
 }

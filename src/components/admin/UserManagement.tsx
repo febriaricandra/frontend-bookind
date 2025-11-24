@@ -73,14 +73,28 @@ export default function UserManagement() {
           {loading && <div className="mb-4">Loading...</div>}
           <div>
             <div className="mb-4 font-semibold">Daftar User</div>
-            <ul className="divide-y">
-              {users.map(u => (
-                <li key={u.id} className="py-2 flex justify-between items-center">
-                  <span>{u.name} ({u.email})</span>
-                  <Button size="sm" onClick={() => fetchUserDetail(u.id)}>Detail</Button>
-                </li>
-              ))}
-            </ul>
+            <div className="overflow-x-auto">
+              <table className="min-w-full border rounded-xl text-sm">
+                <thead className="bg-muted/40">
+                  <tr>
+                    <th className="px-3 py-2 text-left">Nama</th>
+                    <th className="px-3 py-2 text-left">Email</th>
+                    <th className="px-3 py-2 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map(u => (
+                    <tr key={u.id} className="border-b">
+                      <td className="px-3 py-2">{u.name}</td>
+                      <td className="px-3 py-2">{u.email}</td>
+                      <td className="px-3 py-2 text-center">
+                        <Button size="sm" onClick={() => fetchUserDetail(u.id)}>Detail</Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <div className="mt-4 flex gap-2">
               <Button size="sm" disabled={page === 1} onClick={() => setPage(page - 1)}>Prev</Button>
               <Button size="sm" onClick={() => setPage(page + 1)}>Next</Button>

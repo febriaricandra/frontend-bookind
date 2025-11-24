@@ -39,8 +39,12 @@ export function BookCard({ book, onAdd }: any) {
               <DialogTitle className="flex items-center gap-2 text-foreground">{book.title} <Badge variant="outline">{book.condition}</Badge></DialogTitle>
             </DialogHeader>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="aspect-[4/3] bg-muted rounded-xl grid place-content-center text-muted-foreground">
-                <BookOpen className="w-10 h-10" />
+              <div className="aspect-[4/3] bg-muted rounded-xl grid place-content-center text-muted-foreground overflow-hidden">
+                {book.img ? (
+                  <img src={getImageUrl(book.img)} alt={book.title} className="w-full h-full object-cover rounded-xl" />
+                ) : (
+                  <BookOpen className="w-10 h-10" />
+                )}
               </div>
               <div className="space-y-3">
                 <div className="text-sm text-muted-foreground">{book.author}</div>

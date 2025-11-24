@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookOpen, ShoppingCart, HeartHandshake, UsersRound, Settings } from 'lucide-react';
 
-export function MobileBottomNav({ tab, setTab, cartCount }: any) {
+export function MobileBottomNav({ tab, setTab, cartCount, role }: any) {
   const items = [
     { key: 'explore', label: 'Explore', icon: <BookOpen className="w-5 h-5"/> },
     { key: 'sell', label: 'Jual', icon: <ShoppingCart className="w-5 h-5"/> },
@@ -9,9 +9,12 @@ export function MobileBottomNav({ tab, setTab, cartCount }: any) {
     { key: 'community', label: 'Komunitas', icon: <UsersRound className="w-5 h-5"/> },
     { key: 'profile', label: 'Profil', icon: <Settings className="w-5 h-5"/> },
   ];
+  if (role === 'ADMIN') {
+    items.push({ key: 'admin', label: 'Admin', icon: <Settings className="w-5 h-5"/> });
+  }
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 border-t border-border bg-background/90 backdrop-blur px-2 py-1">
-      <ul className="grid grid-cols-5">
+      <ul className={`grid grid-cols-${items.length}`}>
         {items.map((it)=> (
           <li key={it.key}>
             <button

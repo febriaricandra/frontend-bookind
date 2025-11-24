@@ -15,6 +15,17 @@ import { Badge } from '@/components/ui/badge';
 import api from "@/lib/apiClient";
 import { BookOpen, ShoppingCart, HeartHandshake, UsersRound, Settings, Sparkles, Recycle, Accessibility, User } from 'lucide-react';
 import UserManagement from '@/components/admin/UserManagement';
+import { useRouter } from 'next/navigation';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
+import { Truck } from 'lucide-react';
+import { Timeline } from './book-kind/Timeline';
+import { DonateSection } from './book-kind/DonateSection';
+import { CommunitySection } from './book-kind/CommunitySection';
+
 // TODO: import DonateSection, CommunitySection if atomic files created
 
 // Komponen untuk font disleksia
@@ -61,6 +72,7 @@ export function BookKindApp() {
   const [showTrack, setShowTrack] = useState(false);
   const [books, setBooks] = useState<BookKindBook[]>([]);
   const [loadingBooks, setLoadingBooks] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -70,6 +82,7 @@ export function BookKindApp() {
 
   async function fetchBooks() {
     setLoadingBooks(true);
+    router.refresh();
     try {
       const res = await api.get('/books');
       console.log("Fetch books response:", res.data);
@@ -219,12 +232,12 @@ export function BookKindApp() {
 
             {/* DONATE */}
             <TabsContent value="donate" className="mt-6">
-              {/* TODO: <DonateSection /> */}
+              <DonateSection />
             </TabsContent>
 
             {/* COMMUNITY */}
             <TabsContent value="community" className="mt-6">
-              {/* TODO: <CommunitySection /> */}
+              <CommunitySection />
             </TabsContent>
 
             {/* PROFILE */}
@@ -252,7 +265,7 @@ export function BookKindApp() {
               </TabsContent>
             )}
           </Tabs>
-          <MobileBottomNav tab={tab} setTab={setTab} cartCount={cart.length} />
+          <MobileBottomNav tab={tab} setTab={setTab} role={user?.role} />
         </main>
 
         <footer className="border-t border-border bg-background py-8 mt-10">

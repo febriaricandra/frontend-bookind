@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 import { useAuth } from '@/components/auth/auth-provider'
+import { toast } from 'sonner'
 
 export function AuthForm() {
   const [loading, setLoading] = useState(false)
@@ -22,18 +23,16 @@ export function AuthForm() {
   const { signUp, login } = useAuth()
 
   const handleSignIn = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    const user = await login(email, password)
-
-    if (!user) {
-      alert('Login failed. Please check your credentials and try again.')
-    } else {
-      router.push('/')
+    try {
+      e.preventDefault()
+      setLoading(true)
+      await login(email, password)
+      toast.success('Login berhasil!')
       router.refresh()
+    } catch (error: any) {
+      router.refresh()
+      toast.error(error.response?.data?.message || 'Login error')
     }
-
     setLoading(false)
   }
 
@@ -50,14 +49,20 @@ export function AuthForm() {
       )
       if (user) {
         setTab('signin') // Switch to login tab
+        toast.success('Registrasi berhasil! Silakan login.')
       } else {
-        alert('Sign up failed. Please try again.')
+        toast.error('Registrasi gagal. Silakan coba lagi.')
       }
     } catch (error: any) {
-      alert(error.message || 'Sign up error')
+      toast.error(error.message || 'Sign up error')
     }
     setLoading(false)
   }
+
+  useEffect(() => {
+    //checkloading
+    console.log("loading", loading);
+  }, [loading])
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">

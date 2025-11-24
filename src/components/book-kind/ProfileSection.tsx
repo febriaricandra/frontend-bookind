@@ -21,13 +21,6 @@ export function ProfileSection({ showTrack, setShowTrack, user, signOut }: any) 
   const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || user?.phonenumber || '');
   const [saving, setSaving] = useState(false);
 
-  const kpis = [
-    { label: "Points", value: "1.250" },
-    { label: "Buku Dibeli", value: "8" },
-    { label: "Buku Dijual", value: "5" },
-    { label: "Donasi Terhimpun", value: currency(125000) },
-  ];
-
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
@@ -101,14 +94,14 @@ export function ProfileSection({ showTrack, setShowTrack, user, signOut }: any) 
               </div>
             )}
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          {/* <div className="grid grid-cols-2 gap-2">
             {kpis.map((k) => (
               <div key={k.label} className="p-3 rounded-xl bg-muted/50">
                 <div className="text-xs text-muted-foreground">{k.label}</div>
                 <div className="font-semibold">{k.value}</div>
               </div>
             ))}
-          </div>
+          </div> */}
           <div className="mt-2">
             <Label>Preferensi Pembacaan</Label>
             <div className="flex items-center gap-2 mt-2">

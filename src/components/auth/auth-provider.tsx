@@ -78,11 +78,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   // Login user
   const login = async (email: string, password: string) => {
     const res = await api.post('/auth/login', { email, password })
-    if (res.data?.success && res.data?.data?.token && res.data?.data?.user) {
+    if (res.data?.success && res.data?.data?.token) {
       localStorage.setItem('jwt', res.data.data.token)
-      setUser(res.data.data.user)
-      return res.data.data.user
+      // Ambil profile user setelah login
+      try {
+        const profileRes = await api.get('/profile');
+        if (profileRes.data?.success && profileRes.data?.data) {
+          setUser(profileRes.data.data);
+          return profileRes.data.data;
+        }
+      } catch {
+        setUser(null);
+        return null;
+      }
     }
+    setUser(null)
     return null
   }
 
