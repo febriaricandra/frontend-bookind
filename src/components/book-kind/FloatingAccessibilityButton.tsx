@@ -12,7 +12,7 @@ export function FloatingAccessibilityButton({ fontScale, setFontScale, useDyslex
       <DialogTrigger asChild>
         <Button 
           size="lg"
-          className="fixed bottom-20 md:bottom-6 right-6 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-200 bg-primary hover:bg-primary/90 hover:scale-105"
+          className="fixed bottom-20 md:bottom-6 right-6 z-50 rounded-full w-14 h-14 border hover:shadow-xl transition-all duration-200 bg-white hover:scale-105"
           aria-label="Pengaturan Aksesibilitas"
         >
           <Accessibility className="w-6 h-6" />

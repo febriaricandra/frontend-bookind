@@ -162,7 +162,7 @@ export function BookKindApp() {
       <div className={`${useDyslexia ? "dyslexia" : ""} reading-friendly min-h-screen`} style={{ fontSize: `${fontScale}rem` }}>
         <DyslexiaStyle />
         {/* Navbar */}
-        <header className="sticky top-0 z-40 bg-background border-b border-border">
+        <header className="sticky top-0 z-40 border-border bg-background/90 backdrop-blur px-2 py-1">
           <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
             <div className="flex items-center gap-4">
               <span className="font-bold text-lg flex items-center gap-2"><BookOpen className="w-5 h-5" /> BookKind <span className="text-xs font-normal text-muted-foreground">(a.k.a. BookKind)</span></span>
@@ -184,11 +184,10 @@ export function BookKindApp() {
           <Hero setTab={setTab} />
 
           <Tabs value={tab} onValueChange={setTab} className="mt-6">
-            <TabsList className="hidden md:grid grid-cols-6 gap-2 bg-muted/40 p-1 rounded-2xl">
+            <TabsList className={user?.role === 'ADMIN' ? "hidden md:grid grid-cols-5 gap-2 bg-muted/40 p-1 rounded-2xl" : "hidden md:grid grid-cols-4 gap-2 bg-muted/40 p-1 rounded-2xl"}>
               <TabsTrigger value="explore" className="rounded-xl"><BookOpen className="mr-2 h-4 w-4" />Explore</TabsTrigger>
               <TabsTrigger value="sell" className="rounded-xl"><ShoppingCart className="mr-2 h-4 w-4" />Jual</TabsTrigger>
               <TabsTrigger value="donate" className="rounded-xl"><HeartHandshake className="mr-2 h-4 w-4" />Donasi</TabsTrigger>
-              <TabsTrigger value="community" className="rounded-xl"><UsersRound className="mr-2 h-4 w-4" />Komunitas</TabsTrigger>
               <TabsTrigger value="profile" className="rounded-xl"><Settings className="mr-2 h-4 w-4" />Profil</TabsTrigger>
               {user?.role === 'ADMIN' && (
                 <TabsTrigger value="admin" className="rounded-xl"><UsersRound className="mr-2 h-4 w-4" />Admin</TabsTrigger>
@@ -236,9 +235,9 @@ export function BookKindApp() {
             </TabsContent>
 
             {/* COMMUNITY */}
-            <TabsContent value="community" className="mt-6">
+            {/* <TabsContent value="community" className="mt-6">
               <CommunitySection />
-            </TabsContent>
+            </TabsContent> */}
 
             {/* PROFILE */}
             <TabsContent value="profile" className="mt-6">
