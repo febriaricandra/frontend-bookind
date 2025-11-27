@@ -128,22 +128,6 @@ export function BookKindApp() {
     uttr.onend = () => setVoiceOn(false);
   }
 
-  function addToCart(book: BookKindBook) {
-    setCart((prev) => {
-      const idx = prev.findIndex((x) => x.book.id === book.id);
-      if (idx >= 0) {
-        const copy = [...prev];
-        copy[idx] = { ...copy[idx], qty: copy[idx].qty + 1 };
-        return copy;
-      }
-      return [...prev, { book, qty: 1 }];
-    });
-  }
-
-  const subtotal = useMemo(() => cart.reduce((s, i) => s + i.book.price * i.qty, 0), [cart]);
-  const donation = useMemo(() => Math.round((donationPercent / 100) * subtotal), [donationPercent, subtotal]);
-  const shipping = cart.length ? 12000 : 0;
-  const total = subtotal + donation + shipping;
 
   if (loading) {
     return (
@@ -203,8 +187,7 @@ export function BookKindApp() {
                 setPrice={setPrice}
                 condition={condition}
                 setCondition={setCondition}
-                books={books}
-                addToCart={addToCart}
+                books={filtered}
                 bookMatchSeed={bookMatchSeed}
                 setBookMatchSeed={setBookMatchSeed}
               />

@@ -2,7 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 
-const url = process.env.NEXT_PUBLIC_FILE_URL || "http://localhost:3000";
+const url = process.env.NEXT_PUBLIC_FILE_URL;
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

@@ -35,28 +35,28 @@ export function ExploreSection({ query, setQuery, price, setPrice, condition, se
           <CardContent className="space-y-3">
             <div className="relative">
               <Search className="absolute left-2 top-2.5 w-4 h-4 text-muted-foreground" />
-              <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Judul, penulis, kategori…" className="pl-8"/>
+              <Input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Judul, penulis, kategori…" className="pl-8" />
             </div>
             <div>
               <Label>Harga</Label>
-              <Slider value={price} onValueChange={setPrice} min={0} max={60000} step={5000} className="mt-2"/>
+              <Slider value={price} onValueChange={setPrice} min={0} max={60000} step={5000} className="mt-2" />
             </div>
             <div className="space-y-2">
               <Label>Kondisi</Label>
-              <div className="flex items-center gap-2"><Checkbox checked={condition.sangat} onCheckedChange={(v)=>setCondition((c:any)=>({...c, sangat: !!v}))}/> <span>Sangat Baik</span></div>
-              <div className="flex items-center gap-2"><Checkbox checked={condition.baik} onCheckedChange={(v)=>setCondition((c:any)=>({...c, baik: !!v}))}/> <span>Baik</span></div>
-              <div className="flex items-center gap-2"><Checkbox checked={condition.layak} onCheckedChange={(v)=>setCondition((c:any)=>({...c, layak: !!v}))}/> <span>Layak Baca</span></div>
+              <div className="flex items-center gap-2"><Checkbox checked={condition.sangat} onCheckedChange={(v) => setCondition((c: any) => ({ ...c, sangat: !!v }))} /> <span>Sangat Baik</span></div>
+              <div className="flex items-center gap-2"><Checkbox checked={condition.baik} onCheckedChange={(v) => setCondition((c: any) => ({ ...c, baik: !!v }))} /> <span>Baik</span></div>
+              <div className="flex items-center gap-2"><Checkbox checked={condition.layak} onCheckedChange={(v) => setCondition((c: any) => ({ ...c, layak: !!v }))} /> <span>Layak Baca</span></div>
             </div>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-base flex items-center gap-2"><Sparkles className="w-4 h-4"/> BookMatch AI</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2"><Sparkles className="w-4 h-4" /> BookMatch AI</CardTitle>
             <CardDescription>Rekomendasi berdasar minat.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <Input value={bookMatchSeed} onChange={(e)=>setBookMatchSeed(e.target.value)} placeholder="Contoh: akuntansi, riset, literasi"/>
+            <Input value={bookMatchSeed} onChange={(e) => setBookMatchSeed(e.target.value)} placeholder="Contoh: akuntansi, riset, literasi" />
             <div className="text-xs text-muted-foreground">(*Mockup) Algoritma akan belajar dari penelusuran & pembelianmu.</div>
           </CardContent>
         </Card>
@@ -66,15 +66,15 @@ export function ExploreSection({ query, setQuery, price, setPrice, condition, se
             <CardTitle className="text-base">Label Dampak</CardTitle>
           </CardHeader>
           <CardContent className="flex flex-wrap gap-2">
-            <Badge variant="secondary" className="gap-1"><Recycle className="w-3.5 h-3.5"/> Circular</Badge>
-            <Badge variant="secondary" className="gap-1"><Accessibility className="w-3.5 h-3.5"/> Accessible</Badge>
-            <Badge variant="secondary" className="gap-1"><HeartHandshake className="w-3.5 h-3.5"/> Social</Badge>
+            <Badge variant="secondary" className="gap-1"><Recycle className="w-3.5 h-3.5" /> Circular</Badge>
+            <Badge variant="secondary" className="gap-1"><Accessibility className="w-3.5 h-3.5" /> Accessible</Badge>
+            <Badge variant="secondary" className="gap-1"><HeartHandshake className="w-3.5 h-3.5" /> Social</Badge>
           </CardContent>
         </Card>
       </aside>
 
       {/* Results */}
-      <section className="md:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <section className="md:col-span-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
         {books.map((b: any) => (
           <BookCard key={b.id} book={b} onAdd={() => addToCart(b)} />
         ))}
