@@ -103,15 +103,15 @@ export function BookKindApp() {
     fetchBooks();
   }, [user]);
 
-  const filtered = useMemo(() => {
-    return books.filter((b) => {
-      const q = query.toLowerCase();
-      // Pastikan semua field yang digunakan ada di data
-      const matchesQuery = q ? ((b.title || "") + (b.author || "") + (b.category || "") + (b.story || "")).toLowerCase().includes(q) : true;
-      const matchesPrice = typeof b.price === 'number' ? b.price >= price[0] && b.price <= price[1] : true;
-      return matchesQuery && matchesPrice;
-    });
-  }, [books, query, price]);
+  // const filtered = useMemo(() => {
+  //   return books.filter((b) => {
+  //     const q = query.toLowerCase();
+  //     // Pastikan semua field yang digunakan ada di data
+  //     const matchesQuery = q ? ((b.title || "") + (b.author || "") + (b.category || "") + (b.story || "")).toLowerCase().includes(q) : true;
+  //     const matchesPrice = typeof b.price === 'number' ? b.price >= price[0] && b.price <= price[1] : true;
+  //     return matchesQuery && matchesPrice;
+  //   });
+  // }, [books, query, price]);
 
   function readText(text: string) {
     if (!synthRef.current) return;
@@ -187,7 +187,7 @@ export function BookKindApp() {
                 setPrice={setPrice}
                 condition={condition}
                 setCondition={setCondition}
-                books={filtered}
+                books={books}
                 bookMatchSeed={bookMatchSeed}
                 setBookMatchSeed={setBookMatchSeed}
               />
